@@ -51,8 +51,6 @@ public class CompraServiceImpl implements CompraService {
             compraSalva.setTempoDePreparo(pedido.getTempoDePreparo());
             compraRepository.save(compraSalva);
 
-            if(true)  throw new RuntimeException();
-
             log.info("Reservando a entrega");
             InfoEntregaDTO entregaDTO = InfoEntregaDTO.builder()
                     .pedidoId(pedido.getId())
