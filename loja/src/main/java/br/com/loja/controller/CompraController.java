@@ -6,10 +6,7 @@ import br.com.loja.service.CompraService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/compra")
@@ -18,6 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @EnableEurekaClient
 public class CompraController {
     private final CompraService compraService;
+
+    @GetMapping("/{id}")
+    public Compra getById(@PathVariable("id") Long id) {
+        return this.compraService.getById(id);
+    }
 
     @PostMapping()
     public Compra realizaCompra(@RequestBody CompraDTO dto) {

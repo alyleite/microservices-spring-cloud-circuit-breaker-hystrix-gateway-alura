@@ -7,4 +7,4 @@ spring:
       server:
         git:
           uri: https://github.com/alyleite/microservice-repo
-          searchPaths: fornecedor
+          searchPaths: fornecedor,loja,transportador

@@ -1,8 +1,12 @@
 package br.com.loja;
 
+import br.com.loja.config.FeignClientExceptionErrorDecoder;
+import feign.codec.ErrorDecoder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -13,6 +17,7 @@ import org.springframework.web.client.RestTemplate;
 @Slf4j
 @EnableEurekaClient
 @EnableFeignClients
+@EnableCircuitBreaker
 public class LojaApplication {
 
     public static void main(String[] args) {
@@ -25,4 +30,9 @@ public class LojaApplication {
         return new RestTemplate();
     }
 
+    @Bean
+    @ConditionalOnMissingBean(value = ErrorDecoder.class)
+    public FeignClientExceptionErrorDecoder commonFeignErrorDecoder() {
+        return new FeignClientExceptionErrorDecoder();
+    }
 }

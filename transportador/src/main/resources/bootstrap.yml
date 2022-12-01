@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: transportador
+  profiles:
+    active: default
+  cloud:
+    config:
+      name: transportador
+      profile: default
+      uri: http://localhost:8888

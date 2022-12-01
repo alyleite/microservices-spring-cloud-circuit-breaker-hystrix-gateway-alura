@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: loja
+  profiles:
+    active: default
+  cloud:
+    config:
+      name: loja
+      profile: default
+      uri: http://localhost:8888

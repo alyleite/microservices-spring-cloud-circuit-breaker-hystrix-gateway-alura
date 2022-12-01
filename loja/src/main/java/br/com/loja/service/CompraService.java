@@ -5,4 +5,6 @@ import br.com.loja.model.Compra;
 
 public interface CompraService {
     Compra realizaCompra(CompraDTO dto);
+
+    Compra getById(Long id);
 }
